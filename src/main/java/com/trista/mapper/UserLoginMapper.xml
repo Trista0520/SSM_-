@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--绑定命名空间-->
+<mapper namespace="com.trista.mapper.UserLoginMapper">
+
+    <insert id="addUserLogin" parameterType="UserLogin">
+        insert into examination_system.userlogin (userID,userName,password) values (#{userID},#{userName},#{password});
+    </insert>
+
+    <delete id="deleteUserLoginById" parameterType="int">
+        delete from examination_system.userlogin where userID=#{userID};
+    </delete>
+
+    <update id="updateUserLogin" parameterType="UserLogin">
+        update examination_system.userlogin set password=#{password} where userName=#{userName};
+    </update>
+
+    <select id="queryUserLoginByName" parameterType="String" resultType="UserLogin">
+        select * from examination_system.userlogin where userName=#{userName};
+    </select>
+
+    <select id="queryAllUserLogin" resultType="UserLogin">
+        select * from examination_system.userlogin;
+    </select>
+
+</mapper>

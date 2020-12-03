@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--绑定命名空间-->
+<mapper namespace="com.trista.mapper.TeacherMapper">
+    <insert id="addTeacher" parameterType="Teacher">
+        insert into examination_system.teacher (userID, userName, sex, birthYear, degree, title, grade, collegeID)
+        values (#{userID},#{userName},#{sex},#{birthYear},#{degree},#{title},#{grade},#{collegeID});
+    </insert>
+
+    <delete id="deleteTeacherById" parameterType="int">
+        delete from examination_system.teacher where userID=#{userID};
+    </delete>
+
+    <update id="updateTeacher" parameterType="Teacher">
+        update examination_system.teacher set userName=#{userName},sex=#{sex},birthYear=#{birthYear},
+         degree=#{degree},title=#{title},grade=#{grade},collegeID=#{collegeID} where userID=#{userID};
+    </update>
+
+    <select id="queryTeacherByName" parameterType="String" resultType="Teacher">
+        select * from examination_system.teacher where userName=#{userName};
+    </select>
+
+    <select id="queryTeacherById" resultType="Teacher" parameterType="int">
+        select * from examination_system.teacher where userID=#{userID};
+    </select>
+
+    <select id="queryAllTeachers" resultType="Teacher">
+        select * from examination_system.teacher;
+    </select>
+
+    <select id="queryTeacherByLimit" resultType="Teacher">
+        select * from examination_system.teacher limit #{toPageNo}, #{pageSize};
+    </select>
+</mapper>

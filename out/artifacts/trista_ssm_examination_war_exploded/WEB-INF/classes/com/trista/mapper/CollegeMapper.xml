@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--绑定命名空间-->
+<mapper namespace="com.trista.mapper.CollegeMapper">
+
+    <insert id="addCollege" parameterType="College">
+        insert into examination_system.college (collegeID,collegeName) values (#{collegeID},#{collegeName});
+    </insert>
+
+    <delete id="deleteCollegeById" parameterType="int">
+        delete from examination_system.college where collegeID=#{collegeID};
+    </delete>
+
+    <update id="updateCollege" parameterType="College">
+        update examination_system.college set collegeName=#{collegeName} where collegeID=#{collegeID};
+    </update>
+
+    <select id="queryCollegeById" parameterType="int" resultType="College">
+        select * from examination_system.college where collegeID=#{collegeID};
+    </select>
+
+    <select id="queryAllColleges" resultType="College">
+        select * from examination_system.college;
+    </select>
+
+</mapper>

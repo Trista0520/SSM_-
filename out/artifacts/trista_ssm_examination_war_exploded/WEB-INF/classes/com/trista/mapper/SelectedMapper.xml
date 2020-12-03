@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--绑定命名空间-->
+<mapper namespace="com.trista.mapper.SelectedMapper">
+    <insert id="addSelectedCourse" parameterType="SelectedCourse">
+        insert into examination_system.selectedcourse (courseID, studentID, mark) values (#{courseID},#{studentID},#{mark});
+    </insert>
+
+    <delete id="deleteSelectedCourseById" parameterType="int">
+        delete from examination_system.selectedcourse where courseID=#{courseID};
+    </delete>
+
+    <update id="updateSelectedCourse" parameterType="SelectedCourse">
+        update examination_system.selectedcourse set mark=#{mark} where courseID=#{courseID} and studentID=#{studentID};
+    </update>
+
+    <select id="querySelectedCourseById" resultType="SelectedCourse" parameterType="int">
+        select * from examination_system.selectedcourse where courseID=#{courseID};
+    </select>
+
+    <select id="querySelectedCourse" resultType="SelectedCourse" parameterType="map">
+        select * from examination_system.selectedcourse where courseID=#{courseID} and studentID=#{studentID};
+    </select>
+
+    <select id="querySelectedCourseByLimit" resultType="SelectedCourse" parameterType="map">
+         select * from examination_system.selectedcourse where courseID=#{courseID} limit #{toPageNo},#{pageSize} ;
+    </select>
+
+    <select id="querySelectedCourseByStuId" parameterType="int" resultType="SelectedCourse">
+        select * from examination_system.selectedcourse where  studentID=#{studentID};
+    </select>
+
+    <select id="queryAllSelectedCourses" resultType="SelectedCourse">
+        select * from examination_system.selectedcourse;
+    </select>
+</mapper>

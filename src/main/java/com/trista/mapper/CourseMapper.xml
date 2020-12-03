@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--绑定命名空间-->
+<mapper namespace="com.trista.mapper.CourseMapper">
+
+    <insert id="addCourse" parameterType="Course">
+       insert into examination_system.course (courseID, courseName, teacherID, courseTime, classRoom, courseWeek, courseType, collegeID, score) VALUES
+       (#{courseID},#{courseName},#{teacherID},#{courseTime},#{classRoom},#{courseWeek},#{courseType},#{collegeID},#{score});
+    </insert>
+
+    <delete id="deleteCourseById" parameterType="int">
+        delete from examination_system.course where courseID = #{courseID};
+    </delete>
+
+    <update id="updateCourse" parameterType="Course">
+        update examination_system.course set courseName=#{courseName},teacherID=#{teacherID},courseTime=#{courseTime},
+        classRoom=#{classRoom},courseWeek=#{courseWeek},courseType=#{courseType},collegeID=#{collegeID},
+        score=#{score} where courseID=#{courseID};
+    </update>
+
+    <select id="queryCourseByName" parameterType="String" resultType="Course">
+        select * from examination_system.course where courseName=#{courseName};
+    </select>
+
+    <select id="queryCourseById" parameterType="int" resultType="Course">
+          select * from examination_system.course where courseID=#{courseID};
+    </select>
+
+    <select id="queryAllCourses" resultType="Course">
+        select * from examination_system.course;
+    </select>
+
+    <select id="queryCourseByLimit" resultType="Course" parameterType="PagingVO">
+         select * from examination_system.course limit #{toPageNo},#{pageSize};
+    </select>
+
+    <select id="queryCourseByTeacherID" resultType="Course" parameterType="int">
+        select * from examination_system.course where teacherID=#{teacherID};
+    </select>
+
+</mapper>

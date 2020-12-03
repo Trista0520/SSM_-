@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--绑定命名空间-->
+<mapper namespace="com.trista.mapper.RoleMapper">
+    <insert id="addRole" parameterType="Role">
+        insert into examination_system.role (roleID,roleName,permission) values (#{roleID},#{roleName},#{permission});
+    </insert>
+
+    <delete id="deleteRoleById" parameterType="int">
+        delete from examination_system.role where roleID=#{roleID};
+    </delete>
+
+    <update id="updateRole" parameterType="Role">
+        update examination_system.role set roleName=#{roleName},permission=#{permission} where roleID=#{roleID};
+    </update>
+
+    <select id="queryRoleById" parameterType="int" resultType="Role">
+        select * from examination_system.role where roleID=#{roleID};
+    </select>
+
+    <select id="queryAllRoles" resultType="Role">
+        select * from examination_system.role;
+    </select>
+</mapper>
